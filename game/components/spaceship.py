@@ -16,7 +16,9 @@ class Spaceship:
     elif user_input[pygame.K_RIGHT]:
       self.move_right()
     elif user_input[pygame.K_UP]:
-      pass
+      self.move_up()
+    elif user_input[pygame.K_DOWN]:
+      self.move_down()
 
   def draw(self, screen):
     screen.blit(self.image, self.rect)  
@@ -30,5 +32,9 @@ class Spaceship:
       self.rect.x +=10
   
   def move_up(self):
-    if self.rect.up < SCREEN_HEIGHT:
-      self.rect.x -=10
+    if self.rect.y > SCREEN_HEIGHT//2:
+      self.rect.y -=10
+
+  def move_down(self):
+    if self.rect.y < SCREEN_HEIGHT-60:
+      self.rect.y +=10
