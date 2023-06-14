@@ -7,7 +7,7 @@ class Enemy:
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
 
-  def __init__(self, image, speed_x:int, speed_y:int, interval):
+  def __init__(self, image, speed_x:int, speed_y:int, interval:int):
     self.image = image
     self.rect = self.image.get_rect()
     self.rect.x = random.choice(self.X_POS_LIST)

@@ -6,7 +6,7 @@ class Ship(Enemy):
   WIDTH = 40
   HEIGHT = 60
   SPEED_X = 5
-  SPEED_Y = 2
+  SPEED_Y = 1
   INTERVAL = 50
 
   def __init__(self):
