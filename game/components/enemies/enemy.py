@@ -3,20 +3,20 @@ from game.utils.constants import SCREEN_WIDTH
 class Enemy:
   X_POS_LIST = [50, 100, 150, 200, 250 , 300, 350, 400, 450, 500]
   Y_POS = 20
-  SEEP_X = 5
-  SEEP_Y = 1
   LEFT= 'left'
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
-  INTERVAL = 100
 
-  def __init__(self, image):
+  def __init__(self, image, speed_x:int, speed_y:int, interval):
     self.image = image
     self.rect = self.image.get_rect()
     self.rect.x = random.choice(self.X_POS_LIST)
     self.rect.y = self.Y_POS
     self.mov_x = random.choice(self.MOV_X)
     self.index = 0
+    self.SEEP_X = speed_x
+    self.SEEP_Y = speed_y
+    self.INTERVAL = interval
 
   def update(self):
     self.rect.y += self.SEEP_Y
