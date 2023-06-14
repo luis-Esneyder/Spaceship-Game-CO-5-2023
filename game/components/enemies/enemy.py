@@ -1,7 +1,7 @@
 import random
 from game.utils.constants import SCREEN_WIDTH
 class Enemy:
-  X_POS_LIST = [50, 100, 150, 200, 250 , 300, 350, 400, 450, 500]
+  X_POS_LIST = [i for i in range(50, SCREEN_WIDTH, 50)]
   Y_POS = 20
   LEFT= 'left'
   RIGHT= 'right'
