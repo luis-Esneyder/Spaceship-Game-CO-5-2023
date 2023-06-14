@@ -33,7 +33,7 @@ class Game:
 
     def update(self):
         user_input = pygame.key.get_pressed()
-        self.player.update(user_input)
+        self.player.update(user_input, self.game_speed)
         self.enemy_handler.update()
 
     def draw(self):
