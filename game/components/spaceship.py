@@ -11,6 +11,7 @@ class Spaceship:
     self.rect = self.image.get_rect()
     self.rect.x = self.X_POST
     self.rect.y = self.Y_POST
+    self.is_alive = True
   
   def update(self, user_input, speed):
     if user_input[pygame.K_LEFT]:

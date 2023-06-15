@@ -4,9 +4,9 @@ class BulletHundler:
   def __init__(self):
     self.bullets = []
   
-  def update(self):
+  def update(self, player):
     for bullet in self.bullets:
-      bullet.update()
+      bullet.update(player)
 
   def draw(self, screen):
     for bullet in self.bullets:
