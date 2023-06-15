@@ -5,13 +5,12 @@ class BulletHundler:
   def __init__(self):
     self.bullets = []
   
-  def update(self, player, enemy):
+  def update(self, player, enemy): #player recive una objeto de SpaceShip  y enemy recibe un objeto de EnemyHandler
     for bullet in self.bullets:
       if(bullet.type == BULLET_ENEMY_TYPE):
         bullet.update(player)
       elif(bullet.type == BULLET_PLAYER_TYPE):
-        bullet.update(enemy)
-
+        bullet.update(enemy)#enemy es un objeto de EnemyHandler
 
   def draw(self, screen):
     for bullet in self.bullets:

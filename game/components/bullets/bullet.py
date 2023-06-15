@@ -1,4 +1,3 @@
-from game.utils.constants import BULLET_ENEMY_TYPE, BULLET_PLAYER_TYPE
 class Bullet:
 
 

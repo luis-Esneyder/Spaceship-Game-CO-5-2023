@@ -4,14 +4,14 @@ import pygame
 class BulletPlayer(Bullet):
   WIDTH = 9
   HEIGHT = 32
-  SPEED = 20
+  SPEED = 7
   def __init__(self, center):
     self.image = BULLET
     self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGHT))
     super().__init__(self.image, center, BULLET_PLAYER_TYPE)
 
-  def update(self, enemit):
-    if(self.type == BULLET_PLAYER_TYPE):
-      self.rect.y -= self.SPEED
-      if(self.rect.colliderect(enemit.rect)):
-        enemit.is_alive = False
+  def update(self, handler_enemy):#un objeto de EnemyHandler contiene un arreglo de enemigos
+    self.rect.y -= self.SPEED
+    for enemy in handler_enemy.enemies:
+      if(self.rect.colliderect(enemy.rect)):
+        handler_enemy.remove(enemy)
