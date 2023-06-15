@@ -1,16 +1,16 @@
 import pygame
 from game.components.enemies.enemy import Enemy
-from game.utils.constants import SHIP_GRAY
-class ShipGray(Enemy):
+from game.utils.constants import SHIP_BLACK
+class ShipBlack(Enemy):
   
-  WIDTH = 40
+  WIDTH = 50
   HEIGHT = 60
-  SPEED_X = 7
-  SPEED_Y = 3
-  INTERVAL= 30
+  SPEED_X = 10
+  SPEED_Y = 1
+  INTERVAL= 500
 
   def __init__(self):
-    self.image = SHIP_GRAY
+    self.image = SHIP_BLACK
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
     super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL)
   

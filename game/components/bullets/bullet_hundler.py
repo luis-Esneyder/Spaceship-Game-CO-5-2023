@@ -7,6 +7,8 @@ class BulletHundler:
   
   def update(self, player, handler_enemy): #player recive una objeto de SpaceShip  y enemy recibe un objeto de EnemyHandler
     for bullet in self.bullets:
+      if(not bullet.show):
+        self.remove_bullet(bullet)
       if(bullet.type == BULLET_ENEMY_TYPE):
         bullet.update(player)
       elif(bullet.type == BULLET_PLAYER_TYPE):
@@ -21,3 +23,6 @@ class BulletHundler:
       self.bullets.append(BulletEnemy(center))
     elif(type == BULLET_PLAYER_TYPE):
       self.bullets.append(BulletPlayer(center))
+  
+  def remove_bullet(self, bullet):
+    self.bullets.remove(bullet)

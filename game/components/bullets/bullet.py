@@ -6,6 +6,7 @@ class Bullet:
     self.rect = self.image.get_rect()
     self.rect.center = center
     self.type = type
+    self.show = True
 
   def update(self):
     pass

@@ -1,5 +1,5 @@
 from game.components.enemies.enemy import Enemy
-from game.utils.constants import ENEMY_1
+from game.utils.constants import SHIP_RED
 import pygame
 class ShipRed(Enemy):
 
@@ -10,6 +10,6 @@ class ShipRed(Enemy):
   INTERVAL = 50
 
   def __init__(self):
-    self.image = ENEMY_1
+    self.image = SHIP_RED
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
     super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL)
