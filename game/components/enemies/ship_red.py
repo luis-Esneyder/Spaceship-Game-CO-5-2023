@@ -1,7 +1,7 @@
 from game.components.enemies.enemy import Enemy
 from game.utils.constants import ENEMY_1
 import pygame
-class Ship(Enemy):
+class ShipRed(Enemy):
 
   WIDTH = 40
   HEIGHT = 60

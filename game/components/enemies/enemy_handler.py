@@ -1,27 +1,39 @@
-from game.components.enemies.ship import Ship
-from game.components.enemies.ship_two import ShipTwo
+from game.components.enemies.ship_red import ShipRed
+from game.components.enemies.ship_pink import ShipPink
 from game.utils.constants import FPS
 import random
 class EnemyHandler:
   INTERVAL_BETWEEN_SHIPS = 2 * FPS
-  CHOICE_SHIP = ['SHIP_ONE', 'SHIP_TWO']
-  SHIP_ONE = 'SHIP_ONE' 
-  SHIP_TWO = 'SHIP_TWO'
+  SHIP_RED = 'SHIP_RED' 
+  SHIP_PINK = 'SHIP_PINK'
+  CHOICE_SHIP = [SHIP_PINK, SHIP_RED]
+  ENEMY_MAX = 4
   def __init__(self):
     self.enemies = []
     self.interval_time = 0
 
   def update(self):
-    if(self.interval_time == self.INTERVAL_BETWEEN_SHIPS):
-      if random.choice(self.CHOICE_SHIP)==self.SHIP_ONE:
-        self.enemies.append(Ship())
-      else:
-        self.enemies.append(ShipTwo())
-      self.interval_time = 0
-    self.interval_time += 1
+    self.add_enemy()
     for enemy in self.enemies:
       enemy.update()
+      if not enemy.is_alive:
+        self.remove(enemy)
 
   def draw(self,sreen):
     for enemy in self.enemies:
       enemy.draw(sreen)
+  
+  def add_enemy(self):
+    if(len(self.enemies) < self.ENEMY_MAX ):
+      if(self.interval_time == self.INTERVAL_BETWEEN_SHIPS):
+        if random.choice(self.CHOICE_SHIP)==self.SHIP_RED:
+          self.enemies.append(ShipRed())
+        else:
+          self.enemies.append(ShipPink())
+        self.interval_time = 0
+      self.interval_time += 1
+
+  def remove(self, enemy):
+    self.enemies.remove(enemy)
+
+  

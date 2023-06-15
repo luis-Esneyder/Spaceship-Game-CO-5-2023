@@ -1,11 +1,12 @@
 import random
-from game.utils.constants import SCREEN_WIDTH
+from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT
 class Enemy:
   X_POS_LIST = [i for i in range(50, SCREEN_WIDTH, 50)]
   Y_POS = 20
   LEFT= 'left'
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
+  SHOOTING_TIME = 30
 
   def __init__(self, image, speed_x:int, speed_y:int, interval:int):
     self.image = image
@@ -17,8 +18,20 @@ class Enemy:
     self.SEEP_X = speed_x
     self.SEEP_Y = speed_y
     self.INTERVAL = interval
+    self.is_alive = True
+    self.shooting_time = 0
 
   def update(self):
+    if(self.rect.y >= SCREEN_HEIGHT):
+      self.is_alive = False
+    self.shooting_time += 1
+    self.move()
+
+
+  def draw(self, screen):
+    screen.blit(self.image, self.rect)
+
+  def move(self):
     self.rect.y += self.SEEP_Y
     if self.mov_x == self.LEFT:
       self.rect.x -= self.SEEP_X
@@ -32,5 +45,6 @@ class Enemy:
         self.index = 0
     self.index +=1
 
-  def draw(self, screen):
-    screen.blit(self.image, self.rect)
+  def shoot(self):
+    if self.shooting_time % self.SHOOTING_TIME ==0:
+      pass
