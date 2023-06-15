@@ -1,5 +1,5 @@
 import random
-from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_ENEMY_TYPE
 class Enemy:
   X_POS_LIST = [i for i in range(50, SCREEN_WIDTH, 50)]
   Y_POS = 20
@@ -21,11 +21,12 @@ class Enemy:
     self.is_alive = True
     self.shooting_time = 0
 
-  def update(self):
+  def update(self, bullet_handler):
     if(self.rect.y >= SCREEN_HEIGHT):
       self.is_alive = False
     self.shooting_time += 1
     self.move()
+    self.shoot(bullet_handler)
 
 
   def draw(self, screen):
@@ -45,6 +46,6 @@ class Enemy:
         self.index = 0
     self.index +=1
 
-  def shoot(self):
+  def shoot(self, bullet_handler):
     if self.shooting_time % self.SHOOTING_TIME ==0:
-      pass
+      bullet_handler.add_bullet(BULLET_ENEMY_TYPE, self.rect.center)

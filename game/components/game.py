@@ -1,6 +1,7 @@
 import pygame
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import EnemyHandler
+from game.components.bullets.bullet_hundler import BulletHundler
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 class Game:
     def __init__(self):
@@ -15,6 +16,7 @@ class Game:
         self.y_pos_bg = 0
         self.player = Spaceship()
         self.enemy_handler = EnemyHandler()
+        self.bullet_handler = BulletHundler()
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
@@ -33,7 +35,8 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input, self.game_speed)
-        self.enemy_handler.update()
+        self.enemy_handler.update(self.bullet_handler)
+        self.bullet_handler.update()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -41,6 +44,7 @@ class Game:
         self.draw_background()
         self.player.draw(self.screen)
         self.enemy_handler.draw(self.screen)
+        self.bullet_handler.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
