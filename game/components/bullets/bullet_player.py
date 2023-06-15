@@ -14,4 +14,4 @@ class BulletPlayer(Bullet):
     self.rect.y -= self.SPEED
     for enemy in handler_enemy.enemies:
       if(self.rect.colliderect(enemy.rect)):
-        handler_enemy.remove(enemy)
+        enemy.is_alive= False

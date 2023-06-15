@@ -4,7 +4,7 @@ import pygame
 class BulletEnemy(Bullet):
   WIDTH = 9
   HEIGHT = 32
-  SPEED = 7
+  SPEED = 8
   def __init__(self, center):
     self.image = BULLET_ENEMY
     self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGHT))
