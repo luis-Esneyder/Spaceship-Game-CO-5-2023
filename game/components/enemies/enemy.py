@@ -16,7 +16,7 @@ class Enemy:
     self.index = 0
     self.SEEP_X = speed_x
     self.SEEP_Y = speed_y
-    self.INTERVAL = interval
+    self.interval = interval
     self.is_alive = True
     self.shooting_time = 0
     self.interval_shoting_time = interval_shoting_time
@@ -37,16 +37,15 @@ class Enemy:
     self.rect.y += self.SEEP_Y
     if self.mov_x == self.LEFT:
       self.rect.x -= self.SEEP_X
-      if self.index > self.INTERVAL or self.rect.x <=0:
+      if self.index > self.interval or self.rect.x <=0:
         self.mov_x = self.RIGHT
         self.index = 0
     else:
       self.rect.x += self.SEEP_X
-      if self.index > self.INTERVAL or self.rect.x >= SCREEN_WIDTH - self.rect.width:
+      if self.index > self.interval or self.rect.x >= SCREEN_WIDTH - self.rect.width:
         self.mov_x = self.LEFT
         self.index = 0
-    self.index +=1
-
+    self.index +=self.SEEP_X
   def shoot(self, bullet_handler):
     if self.shooting_time % self.interval_shoting_time == 0:
       bullet_handler.add_bullet(BULLET_ENEMY_TYPE, self.rect.center)

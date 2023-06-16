@@ -11,7 +11,7 @@ class EnemyHandler:
   SHIP_PINK = 'SHIP_PINK'
   SHIP_BLACK = 'SHIP_BLACK'
   LIST_SHIP = [SHIP_PINK, SHIP_RED, SHIP_BLACK]
-  ENEMY_MAX = 3
+  ENEMY_MAX = 5
   def __init__(self):
     self.enemies = []
     self.interval_time = 1

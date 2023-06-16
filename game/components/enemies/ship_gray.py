@@ -7,7 +7,7 @@ class ShipGray(Enemy):
   HEIGHT = 60
   SPEED_X = 7
   SPEED_Y = 3
-  INTERVAL= 30
+  INTERVAL= 150
   INTERVAL_SHOTING_TIME = FPS
 
   def __init__(self):
