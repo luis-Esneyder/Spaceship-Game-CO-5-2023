@@ -7,7 +7,7 @@ class Enemy:
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
 
-  def __init__(self, image, speed_x:int, speed_y:int, interval:int, interval_shoting_time):
+  def __init__(self, image, speed_x:int, speed_y:int, interval:int, interval_shoting_time, get_point=1,  endurance=1):
     self.image = image
     self.rect = self.image.get_rect()
     self.rect.x = random.choice(self.X_POS_LIST)
@@ -21,6 +21,8 @@ class Enemy:
     self.shooting_time = 0
     self.interval_shoting_time = interval_shoting_time
     self.is_destroyec = False
+    self.get_point = get_point
+    self.endurance = endurance
 
   def update(self, bullet_handler):
     if(self.rect.y >= SCREEN_HEIGHT):

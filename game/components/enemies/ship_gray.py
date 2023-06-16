@@ -9,9 +9,11 @@ class ShipGray(Enemy):
   SPEED_Y = 3
   INTERVAL= 150
   INTERVAL_SHOTING_TIME = FPS
+  POINT = 3
+  ENDURANCE = 4
 
   def __init__(self):
     self.image = SHIP_GRAY
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
-    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME)
+    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME, self.POINT, self.ENDURANCE)
   

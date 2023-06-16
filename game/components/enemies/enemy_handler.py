@@ -11,7 +11,7 @@ class EnemyHandler:
   SHIP_PINK = 'SHIP_PINK'
   SHIP_BLACK = 'SHIP_BLACK'
   LIST_SHIP = [SHIP_PINK, SHIP_RED, SHIP_BLACK]
-  ENEMY_MAX = 5
+  ENEMY_MAX = 2
   def __init__(self):
     self.enemies = []
     self.interval_time = 1
@@ -22,10 +22,9 @@ class EnemyHandler:
     for enemy in self.enemies:
       self.colliderect_player(enemy, player)
       if enemy.is_destroyec:
-        self.number_enemy_destroyec +=1
+        self.number_enemy_destroyec += enemy.get_point
       enemy.update(bullet_handler)
-      if not enemy.is_alive:
-        self.remove(enemy)
+      self.remove(enemy)  
 
   def draw(self,sreen):
     for enemy in self.enemies:
@@ -46,12 +45,14 @@ class EnemyHandler:
     self.interval_time += 1
 
   def remove(self, enemy):
-    self.enemies.remove(enemy)
+    if not enemy.is_alive:
+      self.enemies.remove(enemy)
   
   def colliderect_player(self,enemy, player):
     if(enemy.rect.colliderect(player.rect)):
       player.is_alive = False
-
+    
+    
   def reset(self):
     self.enemies = []
     self.number_enemy_destroyec = 0

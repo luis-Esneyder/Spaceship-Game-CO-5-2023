@@ -9,7 +9,11 @@ class MalevoloCucarachon(Enemy):
   SPEED_Y = 3
   INTERVAL = SCREEN_WIDTH
   INTERVAL_SHOTING_TIME = FPS//2
+  POINT = 5
+  ENDURANCE=10
   def __init__(self):
     self.image = MALEVOLO_CUCARACHON
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
-    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME)
+    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME, self.POINT, self.ENDURANCE)
+
+    
