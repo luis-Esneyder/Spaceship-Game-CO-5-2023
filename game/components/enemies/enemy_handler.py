@@ -21,6 +21,8 @@ class EnemyHandler:
     self.add_enemy()
     for enemy in self.enemies:
       self.colliderect_player(enemy, player)
+      if enemy.is_destroyec:
+        self.number_enemy_destroyec +=1
       enemy.update(bullet_handler)
       if not enemy.is_alive:
         self.remove(enemy)

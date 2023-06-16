@@ -3,7 +3,7 @@ from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import EnemyHandler
 from game.components.bullets.bullet_hundler import BulletHundler
 from game.components import text_utils
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BULLET_ENEMY_TYPE, BULLET_PLAYER_TYPE
+from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE, SIZE_NORMAL_TEXT, TEXT_SHOW_SCORE
 class Game:
     def __init__(self):
         pygame.init()
@@ -45,6 +45,7 @@ class Game:
             user_input = pygame.key.get_pressed()
             self.player.update(user_input, self.game_speed, self.bullet_handler)
             self.enemy_handler.update(self.bullet_handler, self.player)
+            self.score = self.enemy_handler.number_enemy_destroyec
             self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
             if(not self.player.is_alive):
                 pygame.time.delay(300)
@@ -75,19 +76,19 @@ class Game:
             self.y_pos_bg = 0
         self.y_pos_bg += self.game_speed
 
-    def draw_score(self):
-        score, score_rect = text_utils.get_message(f'yur score is : {self.score}', 20,(255,255,255) )
-        self.screen.blit(score, score_rect)
-    
     def draw_menu(self):
         if self.number_death == 0:
-            text, text_rect = text_utils.get_message('Press any key to start', 30,(255,255,255) )
+            text, text_rect = text_utils.get_message('Press any key to start', 30 ,WHITE_COLOR)
             self.screen.blit(text, text_rect)
         else:
-            text, text_rect = text_utils.get_message('Press any key to start', 30,(255,255,255) )
-            score, score_rect = text_utils.get_message(f'yur score is : {self.score}', 20,(255,255,255) )
+            text, text_rect = text_utils.get_message('Press any key to start', SIZE_TITLE ,WHITE_COLOR )
+            score, score_rect = text_utils.get_message(TEXT_SHOW_SCORE.format(self.score), SIZE_NORMAL_TEXT , WHITE_COLOR,SCREEN_WIDTH//2,  SCREEN_HEIGHT//2 + 40 )
             self.screen.blit(text, text_rect)
             self.screen.blit(score, score_rect)
+    
+    def draw_score(self):
+        score, score_rect = text_utils.get_message(TEXT_SHOW_SCORE.format(self.score), SIZE_NORMAL_TEXT ,WHITE_COLOR, SCREEN_WIDTH - 100 ,  20 )
+        self.screen.blit(score, score_rect)
     
     def reset(self):
         self.player.reset()

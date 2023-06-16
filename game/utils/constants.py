@@ -34,3 +34,10 @@ FONT_STYLE = 'freesansbold.ttf'
 
 BULLET_ENEMY_TYPE = 'enemy'
 BULLET_PLAYER_TYPE = 'player'
+
+WHITE_COLOR = (255,255,255)
+BLACK_COLOR = (0,0,0)
+SIZE_TITLE = 30
+SIZE_NORMAL_TEXT = 20
+TEXT_SHOW_SCORE = 'Your score is: {}'
+
