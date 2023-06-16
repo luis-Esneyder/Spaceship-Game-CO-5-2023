@@ -40,4 +40,6 @@ BLACK_COLOR = (0,0,0)
 SIZE_TITLE = 30
 SIZE_NORMAL_TEXT = 20
 TEXT_SHOW_SCORE = 'Your score is: {}'
+TEXT_SHOW_MAXSCORE = 'Your score top is: {}'
+TEXT_SHOW_DEATH = 'Your death number is : {}'
 

@@ -55,4 +55,4 @@ class EnemyHandler:
   def reset(self):
     self.enemies = []
     self.number_enemy_destroyec = 0
-  
+    self.interval_time =1
