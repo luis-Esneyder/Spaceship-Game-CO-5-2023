@@ -46,7 +46,7 @@ class Game:
         if self.playing:
             user_input = pygame.key.get_pressed()
             self.player.update(user_input, self.game_speed, self.bullet_handler)
-            self.enemy_handler.update(self.bullet_handler, self.player)
+            self.enemy_handler.update(self.bullet_handler, self.player, self.score)
             self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
             self.get_score()
             if(not self.player.is_alive):
@@ -90,7 +90,7 @@ class Game:
             text, text_rect = text_utils.get_message('Press any key to start', SIZE_TITLE ,WHITE_COLOR )
             score, score_rect = text_utils.get_message(TEXT_SHOW_SCORE.format(self.score), SIZE_NORMAL_TEXT , WHITE_COLOR,SCREEN_WIDTH//2,  SCREEN_HEIGHT//2 + 40 )
             maxscore, maxscore_rect = text_utils.get_message(TEXT_SHOW_MAXSCORE.format(self.max_score), SIZE_NORMAL_TEXT , WHITE_COLOR,SCREEN_WIDTH//2,  SCREEN_HEIGHT//2 + 65 )
-            number_death, number_death_rect = text_utils.get_message(TEXT_SHOW_DEATH.format(self.number_death), SIZE_NORMAL_TEXT , WHITE_COLOR,SCREEN_WIDTH//2,  SCREEN_HEIGHT//2 + 85)
+            number_death, number_death_rect = text_utils.get_message(TEXT_SHOW_DEATH.format(self.number_death), SIZE_NORMAL_TEXT , WHITE_COLOR,SCREEN_WIDTH//2,  SCREEN_HEIGHT//2 + 90)
             self.screen.blit(text, text_rect)
             self.screen.blit(number_death, number_death_rect)
             self.screen.blit(score, score_rect)

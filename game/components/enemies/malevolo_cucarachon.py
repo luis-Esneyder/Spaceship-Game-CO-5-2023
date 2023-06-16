@@ -6,7 +6,7 @@ class MalevoloCucarachon(Enemy):
   WIDTH = 70
   HEIGHT = 100
   SPEED_X = 20
-  SPEED_Y = 3
+  SPEED_Y = 2
   INTERVAL = SCREEN_WIDTH
   INTERVAL_SHOTING_TIME = FPS//2
   POINT = 5

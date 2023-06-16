@@ -6,19 +6,19 @@ from game.utils.constants import FPS
 import random
 class EnemyHandler:
   INTERVAL_BETWEEN_SHIPS_DEFAULT =  FPS
-  INTERVAL_BETWEEN_SHIPS_MORE_DIFFICULT =  5 * FPS
+  INTERVAL_BETWEEN_SHIPS_MORE_DIFFICULT =  10 * FPS
   SHIP_RED = 'SHIP_RED' 
   SHIP_PINK = 'SHIP_PINK'
   SHIP_BLACK = 'SHIP_BLACK'
   LIST_SHIP = [SHIP_PINK, SHIP_RED, SHIP_BLACK]
-  ENEMY_MAX = 2
+  ENEMY_MAX = 3
   def __init__(self):
     self.enemies = []
     self.interval_time = 1
     self.number_enemy_destroyec = 0
 
-  def update(self, bullet_handler, player):
-    self.add_enemy()
+  def update(self, bullet_handler, player, score):
+    self.add_enemy(score)
     for enemy in self.enemies:
       self.colliderect_player(enemy, player)
       if enemy.is_destroyec:
@@ -30,7 +30,7 @@ class EnemyHandler:
     for enemy in self.enemies:
       enemy.draw(sreen)
   
-  def add_enemy(self):
+  def add_enemy(self, score):
     if(len(self.enemies) < self.ENEMY_MAX ):
       if(self.interval_time % self.INTERVAL_BETWEEN_SHIPS_DEFAULT == 0):
         chice_ship = random.choice(self.LIST_SHIP)
@@ -40,7 +40,7 @@ class EnemyHandler:
           self.enemies.append(ShipGray())
         elif chice_ship == self.SHIP_BLACK:
           self.enemies.append(ShipBlack())
-    if(self.interval_time % self.INTERVAL_BETWEEN_SHIPS_MORE_DIFFICULT == 0 ):
+    if(score > 20 and self.interval_time % self.INTERVAL_BETWEEN_SHIPS_MORE_DIFFICULT == 0):
       self.enemies.append(MalevoloCucarachon())
     self.interval_time += 1
 
