@@ -6,6 +6,9 @@ from game.components import text_utils
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE, SIZE_NORMAL_TEXT, TEXT_SHOW_SCORE
 from game.utils.constants import TEXT_SHOW_DEATH, TEXT_SHOW_MAXSCORE
 class Game:
+
+    INCREMENT_VEL = 2
+    INTERVAL_INCREMENT_VEL = 10 * FPS
     def __init__(self):
         pygame.init()
         pygame.display.set_caption(TITLE)
@@ -23,6 +26,7 @@ class Game:
         self.score = 0
         self.max_score = 0
         self.number_death = 0
+        self.contador = 0
     def run(self):
         # Game loop: events - update - draw
         self.running = True
@@ -49,11 +53,13 @@ class Game:
             self.enemy_handler.update(self.bullet_handler, self.player, self.score)
             self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
             self.get_score()
+            self.contador+=1
             if(not self.player.is_alive):
                 pygame.time.delay(300)
                 self.playing = False
                 self.number_death +=1
-
+            if self.contador % self.INTERVAL_INCREMENT_VEL == 0:
+                self.game_speed += self.INCREMENT_VEL
     def draw(self):
         self.draw_background()
         if self.playing:
@@ -104,3 +110,5 @@ class Game:
         self.player.reset()
         self.enemy_handler.reset()
         self.bullet_handler.reset()
+        self.game_speed = 10
+        self.contador = 0
