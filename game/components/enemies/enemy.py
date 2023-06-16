@@ -20,6 +20,7 @@ class Enemy:
     self.INTERVAL = interval
     self.is_alive = True
     self.shooting_time = 0
+    self.is_destroyec = False
 
   def update(self, bullet_handler):
     if(self.rect.y >= SCREEN_HEIGHT):
