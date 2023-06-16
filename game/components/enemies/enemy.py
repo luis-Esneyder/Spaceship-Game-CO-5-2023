@@ -6,9 +6,8 @@ class Enemy:
   LEFT= 'left'
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
-  SHOOTING_TIME = 30
 
-  def __init__(self, image, speed_x:int, speed_y:int, interval:int):
+  def __init__(self, image, speed_x:int, speed_y:int, interval:int, interval_shoting_time):
     self.image = image
     self.rect = self.image.get_rect()
     self.rect.x = random.choice(self.X_POS_LIST)
@@ -20,6 +19,7 @@ class Enemy:
     self.INTERVAL = interval
     self.is_alive = True
     self.shooting_time = 0
+    self.interval_shoting_time = interval_shoting_time
     self.is_destroyec = False
 
   def update(self, bullet_handler):
@@ -48,5 +48,5 @@ class Enemy:
     self.index +=1
 
   def shoot(self, bullet_handler):
-    if self.shooting_time % self.SHOOTING_TIME == 0:
+    if self.shooting_time % self.interval_shoting_time == 0:
       bullet_handler.add_bullet(BULLET_ENEMY_TYPE, self.rect.center)

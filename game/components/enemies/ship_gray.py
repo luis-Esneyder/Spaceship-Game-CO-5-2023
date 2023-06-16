@@ -1,6 +1,6 @@
 import pygame
 from game.components.enemies.enemy import Enemy
-from game.utils.constants import SHIP_GRAY
+from game.utils.constants import SHIP_GRAY, FPS
 class ShipGray(Enemy):
   
   WIDTH = 40
@@ -8,9 +8,10 @@ class ShipGray(Enemy):
   SPEED_X = 7
   SPEED_Y = 3
   INTERVAL= 30
+  INTERVAL_SHOTING_TIME = FPS
 
   def __init__(self):
     self.image = SHIP_GRAY
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
-    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL)
+    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME)
   
