@@ -16,6 +16,6 @@ class BulletPlayer(Bullet):
       if(self.rect.colliderect(enemy.rect)):
         enemy.endurance -=1
         if(enemy.endurance == 0):
-          enemy.is_alive = False
           enemy.is_destroyec= True
+          enemy.is_alive = False
         self.show = False

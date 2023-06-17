@@ -2,9 +2,10 @@ import pygame
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import EnemyHandler
 from game.components.bullets.bullet_hundler import BulletHundler
+from game.components.power.power_handler import PowerHandler
 from game.components import text_utils
 from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE, SIZE_NORMAL_TEXT, TEXT_SHOW_SCORE
-from game.utils.constants import TEXT_SHOW_DEATH, TEXT_SHOW_MAXSCORE
+from game.utils.constants import TEXT_SHOW_DEATH, TEXT_SHOW_MAXSCORE, DEFAULT_TYPE
 class Game:
 
     INCREMENT_VEL = 2
@@ -23,6 +24,7 @@ class Game:
         self.player = Spaceship()
         self.enemy_handler = EnemyHandler()#enimies = []
         self.bullet_handler = BulletHundler()
+        self.power_handler = PowerHandler()
         self.score = 0
         self.max_score = 0
         self.number_death = 0
@@ -52,6 +54,7 @@ class Game:
             self.player.update(user_input, self.game_speed, self.bullet_handler)
             self.enemy_handler.update(self.bullet_handler, self.player, self.score)
             self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
+            self.power_handler.update(self.player)
             self.get_score()
             self.contador+=1
             if(not self.player.is_alive):
@@ -67,7 +70,9 @@ class Game:
             self.player.draw(self.screen)
             self.enemy_handler.draw(self.screen)
             self.bullet_handler.draw(self.screen)
+            self.power_handler.draw(self.screen)
             self.draw_score()
+            self.draw_power_time()
         else:
             self.draw_menu()
         pygame.display.update()
@@ -106,6 +111,17 @@ class Game:
         score, score_rect = text_utils.get_message(TEXT_SHOW_SCORE.format(self.score), SIZE_NORMAL_TEXT ,WHITE_COLOR, SCREEN_WIDTH - 100 ,  20 )
         self.screen.blit(score, score_rect)
     
+    def draw_power_time(self):
+        if self.player.has_power:
+            power_time = round((self.player.power_time - pygame.time.get_ticks())/1000, 2)
+            if power_time>=0:
+                text, text_rect = text_utils.get_message(f'{self.player.power_type.capitalize()} is enable for {power_time}', 20 ,WHITE_COLOR, 150, 50)
+                self.screen.blit(text, text_rect)
+            else:
+                self.player.has_power = False
+                self.player.power_time = DEFAULT_TYPE
+                self.player.set_default_image()
+
     def reset(self):
         self.player.reset()
         self.enemy_handler.reset()
