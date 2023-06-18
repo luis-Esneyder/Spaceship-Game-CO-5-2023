@@ -1,5 +1,6 @@
 import pygame
-from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE
+from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR
+from game.components import text_utils
 class Spaceship:
   WIDTH = 40
   HEIGTH = 60
@@ -28,8 +29,10 @@ class Spaceship:
     elif user_input[pygame.K_SPACE]:
       self.shoot(bullet_handler)
 
-  def draw(self, screen):
-    screen.blit(self.image, self.rect)  
+  def draw(self, screen, playing):
+    if playing:
+      screen.blit(self.image, self.rect)  
+      self.draw_power_time(screen)
   
   def move_left(self, speed):
     self.rect.x -=speed
@@ -60,6 +63,17 @@ class Spaceship:
     self.image = SPACESHIP
     self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGTH))
   
+  def draw_power_time(self, screen):
+    if self.has_power:
+      power_time = round((self.power_time - pygame.time.get_ticks())/1000, 2)
+      if power_time>=0:
+        text, text_rect = text_utils.get_message(f'{self.power_type.capitalize()} is enable for {power_time}', 20 ,WHITE_COLOR, 150, 50)
+        screen.blit(text, text_rect)
+      else:
+        self.has_power = False
+        self.power_time = DEFAULT_TYPE
+        self.set_default_image()
+
   def reset(self):
     self.rect.x = self.X_POST
     self.rect.y = self.Y_POST

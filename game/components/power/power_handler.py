@@ -18,9 +18,10 @@ class PowerHandler:
       power.update()
       self.colliderect_power(power, player)
 
-  def draw(self, screen):
-    for power in self.powers:
-      power.draw(screen)
+  def draw(self, screen, playing):
+    if playing:
+      for power in self.powers:
+        power.draw(screen)
 
   def colliderect_power(self, power, player):
     if player.rect.colliderect(power.rect):

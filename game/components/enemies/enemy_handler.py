@@ -26,9 +26,10 @@ class EnemyHandler:
       enemy.update(bullet_handler)
       self.remove(enemy)  
 
-  def draw(self,sreen):
-    for enemy in self.enemies:
-      enemy.draw(sreen)
+  def draw(self,sreen, playing):
+    if playing:
+      for enemy in self.enemies:
+        enemy.draw(sreen)
   
   def add_enemy(self, score):
     if(len(self.enemies) < self.ENEMY_MAX ):
