@@ -18,7 +18,7 @@ class Spaceship:
     self.power_type = DEFAULT_TYPE
     self.has_power = False
     self.power_time = 0
-    self.resistence = 3
+    self.resistence = 2
   
   def update(self, user_input, speed, bullet_handler):
     if user_input[pygame.K_LEFT]:
@@ -36,7 +36,7 @@ class Spaceship:
     if playing:
       screen.blit(self.image, self.rect)  
       self.draw_power_time(screen)
-      self.draw_heart(screen)
+      self.draw_live_heart(screen)
   
   def move_left(self, speed):
     self.rect.x -=speed
@@ -78,7 +78,7 @@ class Spaceship:
         self.power_time = DEFAULT_TYPE
         self.set_default_image()
 
-  def draw_heart(self, screen, image= HEART):
+  def draw_live_heart(self, screen, image= HEART):
     image = image
     image_rect = image.get_rect()
     image_rect.x = 0
@@ -92,5 +92,5 @@ class Spaceship:
   def reset(self):
     self.rect.x = self.X_POST
     self.rect.y = self.Y_POST
+    self.resistence=1
     self.is_alive = True
-    self.resistence = 3

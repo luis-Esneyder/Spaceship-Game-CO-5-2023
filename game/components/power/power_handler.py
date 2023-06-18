@@ -23,7 +23,7 @@ class PowerHandler:
   def draw(self, screen, playing):
     if playing:
       for power in self.powers:
-        power.draw(screen)
+        power.draw(screen )
 
   def colliderect_power(self, power, player):
     if(power.type == SHIELD_TYPE):  
@@ -36,7 +36,7 @@ class PowerHandler:
         player.set_power_image(SPACESHIP_SHIELD)
 
   def generate_power(self, score):
-    if(len(self.powers) == 0 and  score - self.score_ref_power >20):
+    if(len(self.powers) > 1 and  score - self.score_ref_power >10):
       power = Shield()
       self.powers.append(power)
       self.WHEN_APPEARS_SHIELD += random.randint(3000, 7000)
@@ -45,9 +45,11 @@ class PowerHandler:
   def colliderect_heart(self, power, player, score):
     if(power.type == HEART_TYPE and power.is_alive):  
       if power.rect.colliderect(player.rect):
-        player.resistence +=1
-        power.is_alive = False
-        self.score_ref_heard = score
+        if player.is_alive and power.is_alive:
+          if player.resistence<3:
+            player.resistence +=1
+          power.is_alive = False
+          self.score_ref_heard = score
         
 
   def generate_heart(self, enemies):

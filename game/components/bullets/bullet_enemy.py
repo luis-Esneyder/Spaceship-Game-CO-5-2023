@@ -12,9 +12,9 @@ class BulletEnemy(Bullet):
 
   def update(self, player):#recibe un objeto de la clase SpaceShip
     self.rect.y += self.SPEED
-    if(self.rect.colliderect(player.rect)):
-      self.show = False
-      if not player.has_power:
-        if player.resistence <= 0:
-          player.is_alive = False
+    if(player.rect.colliderect(self.rect)):
+      if not player.has_power and self.show:
         player.resistence -= 1
+        if player.resistence == 0:
+          player.is_alive = False
+      self.show = False
