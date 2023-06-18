@@ -54,7 +54,7 @@ class Game:
             self.player.update(user_input, self.game_speed, self.bullet_handler)
             self.enemy_handler.update(self.bullet_handler, self.player, self.score)
             self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
-            self.power_handler.update(self.player)
+            self.power_handler.update(self.player, self.score)
             self.get_score()
             self.contador+=1
             if(not self.player.is_alive):
@@ -126,5 +126,7 @@ class Game:
         self.player.reset()
         self.enemy_handler.reset()
         self.bullet_handler.reset()
+        self.power_handler.reset()
         self.game_speed = 10
+        self.score = 0
         self.contador = 0
