@@ -16,6 +16,7 @@ class Power:
 
   def update(self):
     self.move() 
+    
   def draw(self, screen):
     screen.blit(self.image, self.rect)
 

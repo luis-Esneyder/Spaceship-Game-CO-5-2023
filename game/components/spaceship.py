@@ -1,9 +1,11 @@
 import pygame
-from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR
+from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR, HEART
 from game.components import text_utils
 class Spaceship:
   WIDTH = 40
   HEIGTH = 60
+  WIDTH_HEART = 25
+  HEIGTH_HEART = 25
   X_POST = (SCREEN_WIDTH//2) - WIDTH
   Y_POST = 500
   def __init__(self):
@@ -16,6 +18,7 @@ class Spaceship:
     self.power_type = DEFAULT_TYPE
     self.has_power = False
     self.power_time = 0
+    self.resistence = 3
   
   def update(self, user_input, speed, bullet_handler):
     if user_input[pygame.K_LEFT]:
@@ -33,6 +36,7 @@ class Spaceship:
     if playing:
       screen.blit(self.image, self.rect)  
       self.draw_power_time(screen)
+      self.draw_heart(screen)
   
   def move_left(self, speed):
     self.rect.x -=speed
@@ -74,7 +78,19 @@ class Spaceship:
         self.power_time = DEFAULT_TYPE
         self.set_default_image()
 
+  def draw_heart(self, screen, image= HEART):
+    image = image
+    image_rect = image.get_rect()
+    image_rect.x = 0
+    image_rect.y = SCREEN_HEIGHT - self.HEIGTH_HEART
+    for i in range(self.resistence):
+      image = pygame.transform.scale(image, (self.WIDTH_HEART,self.HEIGTH_HEART))
+      screen.blit(image, image_rect)
+      image_rect.x += self.WIDTH_HEART
+
+
   def reset(self):
     self.rect.x = self.X_POST
     self.rect.y = self.Y_POST
     self.is_alive = True
+    self.resistence = 3

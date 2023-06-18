@@ -11,8 +11,9 @@ class ShipBlack(Enemy):
   INTERVAL_SHOTING_TIME = FPS
   POINT = 3
   ENDURANCE=4
+  TYPE = 'SHIP_BLACK'
   def __init__(self):
     self.image = SHIP_BLACK
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
-    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME, self.POINT,self.ENDURANCE)
+    super().__init__(self.image, self.SPEED_X, self.SPEED_Y, self.INTERVAL, self.INTERVAL_SHOTING_TIME, self.TYPE, self.POINT,self.ENDURANCE)
   

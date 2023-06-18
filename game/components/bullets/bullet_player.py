@@ -5,6 +5,7 @@ class BulletPlayer(Bullet):
   WIDTH = 9
   HEIGHT = 32
   SPEED = 7
+  TYPE = 'malevolo_cucarachon'
   def __init__(self, center):
     self.image = BULLET
     self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGHT))
@@ -16,6 +17,6 @@ class BulletPlayer(Bullet):
       if(self.rect.colliderect(enemy.rect)):
         enemy.endurance -=1
         if(enemy.endurance == 0):
-          enemy.is_destroyec= True
           enemy.is_alive = False
+          enemy.is_destroyec= True
         self.show = False

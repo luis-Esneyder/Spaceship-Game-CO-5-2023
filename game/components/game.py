@@ -6,8 +6,7 @@ from game.components.power.power_handler import PowerHandler
 from game.components.background import Background
 from game.components.statistics.statistics import Statistic
 from game.components import text_utils
-from game.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE, SIZE_NORMAL_TEXT, TEXT_SHOW_SCORE
-from game.utils.constants import TEXT_SHOW_DEATH, TEXT_SHOW_MAXSCORE, DEFAULT_TYPE
+from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE
 class Game:
 
     INCREMENT_VEL = 1
@@ -26,7 +25,6 @@ class Game:
         self.bullet_handler = BulletHundler()
         self.power_handler = PowerHandler()
         self.statistic = Statistic()
-        self.resistence = 1
         self.contador = 0
     def run(self):
         # Game loop: events - update - draw
@@ -54,7 +52,7 @@ class Game:
             self.player.update(user_input, self.game_speed, self.bullet_handler)
             self.enemy_handler.update(self.bullet_handler, self.player, self.statistic.score)
             self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
-            self.power_handler.update(self.player, self.statistic.score)
+            self.power_handler.update(self.player, self.statistic.score, self.enemy_handler.enemies)
             self.statistic.update(self.enemy_handler.number_enemy_destroyec)
             self.contador+=1
             if(not self.player.is_alive):

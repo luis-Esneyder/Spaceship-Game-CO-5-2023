@@ -1,6 +1,5 @@
 from game.components.power.power import Power
 from game.utils.constants import SHIELD, SHIELD_TYPE
-import random
 class Shield(Power):
   
   def __init__(self):

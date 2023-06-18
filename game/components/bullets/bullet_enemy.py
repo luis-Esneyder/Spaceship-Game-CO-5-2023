@@ -15,4 +15,6 @@ class BulletEnemy(Bullet):
     if(self.rect.colliderect(player.rect)):
       self.show = False
       if not player.has_power:
-        player.is_alive = False
+        if player.resistence <= 0:
+          player.is_alive = False
+        player.resistence -= 1
