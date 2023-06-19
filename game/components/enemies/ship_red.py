@@ -7,7 +7,7 @@ class ShipRed(Enemy):
   HEIGHT = 60
   SPEED_X = 5
   SPEED_Y = 1
-  INTERVAL = 50
+  INTERVAL = 100
   INTERVAL_SHOTING_TIME =  (FPS/2) * 3
   TIPE='SHIP_RED'
   def __init__(self):

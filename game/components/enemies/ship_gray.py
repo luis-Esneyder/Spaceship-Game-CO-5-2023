@@ -7,7 +7,7 @@ class ShipGray(Enemy):
   HEIGHT = 60
   SPEED_X = 7
   SPEED_Y = 3
-  INTERVAL= 150
+  INTERVAL= 300
   INTERVAL_SHOTING_TIME = FPS
   POINT = 2
   ENDURANCE = 4

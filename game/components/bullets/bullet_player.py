@@ -13,6 +13,8 @@ class BulletPlayer(Bullet):
 
   def update(self, handler_enemy, bullets):#un objeto de EnemyHandler contiene un arreglo de enemigos
     self.rect.y -= self.SPEED
+    if(self.rect.y <= 0):
+      self.show = False
     self.kill_enemy(handler_enemy.enemies)
     for bullet in bullets:
       if self.rect.colliderect(bullet.rect):
@@ -23,8 +25,8 @@ class BulletPlayer(Bullet):
   def kill_enemy(self, enemies):
     for enemy in enemies:
       if(self.rect.colliderect(enemy.rect)):
-        enemy.endurance -=1
-        if(enemy.endurance == 0):
+        enemy.resistence -=1
+        if(enemy.resistence == 0):
           enemy.music_death.play()
           enemy.music_death.set_volume(0.6)
           enemy.is_alive = False

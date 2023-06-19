@@ -7,7 +7,7 @@ class Enemy:
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
   VOLUMENT_MUSIC = 0.5
-  def __init__(self, image, speed_x:int, speed_y:int, interval:int, interval_shoting_time, type, get_point=1,  endurance=1):
+  def __init__(self, image, speed_x:int, speed_y:int, interval:int, interval_shoting_time, type, get_point=1,  resistence=1):
     self.image = image
     self.rect = self.image.get_rect()
     self.rect.x = random.choice(self.X_POS_LIST)
@@ -22,7 +22,7 @@ class Enemy:
     self.interval_shoting_time = interval_shoting_time
     self.is_destroyec = False
     self.get_point = get_point
-    self.endurance = endurance
+    self.resistence = resistence
     self.type = type
     self.music = SHOOT_ENEMY
     self.music_death = SHIP_DESTROYEC
@@ -31,6 +31,7 @@ class Enemy:
     if(self.rect.y >= SCREEN_HEIGHT):
       self.is_alive = False
     self.shooting_time += 1
+    self.rect.y += self.SEEP_Y
     self.move()
     self.shoot(bullet_handler)
 
@@ -38,7 +39,6 @@ class Enemy:
     screen.blit(self.image, self.rect)
 
   def move(self):
-    self.rect.y += self.SEEP_Y
     if self.mov_x == self.LEFT:
       self.rect.x -= self.SEEP_X
       if self.index > self.interval or self.rect.x <=0:
@@ -50,6 +50,7 @@ class Enemy:
         self.mov_x = self.LEFT
         self.index = 0
     self.index +=self.SEEP_X
+
   def shoot(self, bullet_handler):
     if self.shooting_time % self.interval_shoting_time == 0:
       self.music.play()

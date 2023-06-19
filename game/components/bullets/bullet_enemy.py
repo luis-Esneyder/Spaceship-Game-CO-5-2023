@@ -1,4 +1,4 @@
-from game.utils.constants import BULLET_ENEMY, BULLET_ENEMY_TYPE
+from game.utils.constants import BULLET_ENEMY, BULLET_ENEMY_TYPE, SCREEN_HEIGHT
 from game.components.bullets.bullet import Bullet
 import pygame
 class BulletEnemy(Bullet):
@@ -12,6 +12,8 @@ class BulletEnemy(Bullet):
 
   def update(self, player):#recibe un objeto de la clase SpaceShip
     self.rect.y += self.SPEED
+    if(self.rect.y >= SCREEN_HEIGHT):
+      self.show = False
     if(player.rect.colliderect(self.rect)):
       if not player.has_power and self.show:
         player.resistence -= 1
