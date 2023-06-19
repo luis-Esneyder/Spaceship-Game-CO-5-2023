@@ -6,6 +6,7 @@ import pygame
 class PowerHandler:
   WHEN_APPEARS_SHIELD = random.randint(3000, 7000)  
   TYPE = 'malevolo_cucarachon'
+  INTERVAL_SCORE_SHIELD = 10
   def __init__(self):
     self.powers = []
     self.score_ref_power = 0
@@ -40,7 +41,7 @@ class PowerHandler:
         player.set_power_image(SPACESHIP_SHIELD)
 
   def generate_power(self, score):
-    if(score - self.score_ref_power > 10):
+    if(score - self.score_ref_power > self.INTERVAL_SCORE_SHIELD):
       power = Shield()
       self.powers.append(power)
       self.WHEN_APPEARS_SHIELD += random.randint(3000, 7000)
