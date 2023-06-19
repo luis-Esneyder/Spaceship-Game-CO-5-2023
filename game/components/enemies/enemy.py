@@ -28,9 +28,6 @@ class Enemy:
     self.music_death = SHIP_DESTROYEC
 
   def update(self, bullet_handler):
-    if( not self.is_alive):
-      self.music_death.play()
-      self.music_death.set_volume(1)
     if(self.rect.y >= SCREEN_HEIGHT):
       self.is_alive = False
     self.shooting_time += 1

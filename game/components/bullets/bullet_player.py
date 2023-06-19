@@ -25,6 +25,8 @@ class BulletPlayer(Bullet):
       if(self.rect.colliderect(enemy.rect)):
         enemy.endurance -=1
         if(enemy.endurance == 0):
+          enemy.music_death.play()
+          enemy.music_death.set_volume(0.6)
           enemy.is_alive = False
           enemy.is_destroyec= True
         self.show = False

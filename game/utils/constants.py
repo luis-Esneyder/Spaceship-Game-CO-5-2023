@@ -12,7 +12,7 @@ SHOOT_PLAYER= pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/shoot_player.mp3")
 SHOOT_ENEMY= pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/shoot_enemy.mp3"))
 ABSOR_HEAR = pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/powerUp2.ogg"))
 ABSOR_SHIELD = pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/absor_heart.mp3"))
-SHIP_DESTROYEC = pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/splotion.mp3"))
+SHIP_DESTROYEC = pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/ShipExplosion_2.mp3"))
 ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
@@ -36,6 +36,7 @@ SHIP_RED = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
 SHIP_GRAY = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
 SHIP_BLACK = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_3.png"))
 MALEVOLO_CUCARACHON = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_4.png"))
+SHIP_GOD = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_6.png"))
 
 
 FONT_STYLE = 'freesansbold.ttf'
