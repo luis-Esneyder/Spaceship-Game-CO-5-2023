@@ -1,19 +1,22 @@
 import pygame
 import os
-
 # Global Constants
 TITLE = "Spaceships Game"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
-
-# Assets Constants
+pygame.mixer.init()
+MUSIC_START= pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/musicstart.mp3"))
+SHOOT_PLAYER= pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/shoot_player.mp3"))
+SHOOT_ENEMY= pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/shoot_enemy.mp3"))
+ABSOR_HEAR = pygame.mixer.Sound(os.path.join(IMG_DIR, "Music/absor_heart.mp3"))
 ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
+BG_START = pygame.image.load(os.path.join(IMG_DIR, 'Other/bg_start.jpg'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
@@ -38,6 +41,7 @@ BULLET_PLAYER_TYPE = 'player'
 
 WHITE_COLOR = (255,255,255)
 BLACK_COLOR = (0,0,0)
+TEXT_COLOR = (0, 128, 0)
 SIZE_TITLE = 30
 SIZE_NORMAL_TEXT = 20
 TEXT_SHOW_SCORE = 'Your score is: {}'

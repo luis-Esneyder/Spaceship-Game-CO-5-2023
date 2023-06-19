@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR, HEART
+from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR, HEART, SHOOT_PLAYER, FPS
 from game.components import text_utils
 class Spaceship:
   WIDTH = 40
@@ -8,6 +8,7 @@ class Spaceship:
   HEIGTH_HEART = 25
   X_POST = (SCREEN_WIDTH//2) - WIDTH
   Y_POST = 500
+  VOLUMENT_MUSIC = 0.6
   def __init__(self):
     self.image = SPACESHIP
     self.image = pygame.transform.scale(self.image,(self.WIDTH, self.HEIGTH))
@@ -19,8 +20,11 @@ class Spaceship:
     self.has_power = False
     self.power_time = 0
     self.resistence = 2
+    self.contador = 0
+    self.music_shot = SHOOT_PLAYER
   
   def update(self, user_input, speed, bullet_handler):
+    self.contador+=1
     if user_input[pygame.K_LEFT]:
       self.move_left(speed)
     elif user_input[pygame.K_RIGHT]:
@@ -57,7 +61,10 @@ class Spaceship:
       self.rect.y +=speed
   
   def shoot(self, bullet_handler):
-    bullet_handler.add_bullet(BULLET_PLAYER_TYPE, self.rect.center)
+    if(self.contador % 3 == 0 ):
+      self.music_shot.play()
+      self.music_shot.set_volume(self.VOLUMENT_MUSIC)
+      bullet_handler.add_bullet(BULLET_PLAYER_TYPE, self.rect.center)
 
   def set_power_image(self, image):
     self.image = image

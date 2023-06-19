@@ -1,14 +1,14 @@
 import pygame
+import os
 from game.components.spaceship import Spaceship
 from game.components.enemies.enemy_handler import EnemyHandler
 from game.components.bullets.bullet_hundler import BulletHundler
 from game.components.power.power_handler import PowerHandler
-from game.components.background import Background
+from game.components.background.background import Background
 from game.components.statistics.statistics import Statistic
 from game.components import text_utils
-from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE
+from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE, MUSIC_START, TEXT_COLOR
 class Game:
-
     INCREMENT_VEL = 1
     INTERVAL_INCREMENT_VEL = 6 * FPS
     def __init__(self):
@@ -26,6 +26,9 @@ class Game:
         self.power_handler = PowerHandler()
         self.statistic = Statistic()
         self.contador = 0
+        self.music = MUSIC_START
+        self.music.play(-1)
+        self.music.set_volume(0.2)
     def run(self):
         # Game loop: events - update - draw
         self.running = True
@@ -62,7 +65,7 @@ class Game:
             if self.contador % self.INTERVAL_INCREMENT_VEL == 0:
                 self.background.game_speed += self.INCREMENT_VEL
     def draw(self):
-        self.background.draw(self.screen)
+        self.background.draw(self.screen, self.playing)
         self.player.draw(self.screen, self.playing)
         self.clock.tick(FPS)
         self.enemy_handler.draw(self.screen, self.playing)
@@ -76,10 +79,12 @@ class Game:
     def draw_menu(self):
         if not self.playing:
             if self.statistic.number_death == 0:
-                text, text_rect = text_utils.get_message('Press any key to start', 30 ,WHITE_COLOR)
+                text, text_rect = text_utils.get_message('WELCOME TO THE GAME', 30 ,TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT//4)
+                text_2, text_rect_2 = text_utils.get_message('Press any key to start', 30 ,TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT//2.7)
                 self.screen.blit(text, text_rect)
+                self.screen.blit(text_2, text_rect_2)
             else:
-                text, text_rect = text_utils.get_message('Press any key to start', SIZE_TITLE ,WHITE_COLOR )
+                text, text_rect = text_utils.get_message('Press any key to start', SIZE_TITLE , TEXT_COLOR )
                 self.screen.blit(text, text_rect)
 
     def reset(self):

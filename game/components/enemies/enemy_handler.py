@@ -6,7 +6,7 @@ from game.utils.constants import FPS
 import random
 class EnemyHandler:
   INTERVAL_BETWEEN_SHIPS_DEFAULT =  FPS
-  INTERVAL_BETWEEN_SHIPS_MORE_DIFFICULT =  2 * FPS
+  INTERVAL_BETWEEN_SHIPS_MORE_DIFFICULT =  4 * FPS
   SHIP_RED = 'SHIP_RED' 
   SHIP_PINK = 'SHIP_PINK'
   SHIP_BLACK = 'SHIP_BLACK'
@@ -56,9 +56,7 @@ class EnemyHandler:
         player.resistence -= 1
         if player.resistence == 0:
           player.is_alive = False
-       
-    
-    
+
   def reset(self):
     self.enemies = []
     self.number_enemy_destroyec = 0

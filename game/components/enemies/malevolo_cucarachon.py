@@ -6,11 +6,11 @@ class MalevoloCucarachon(Enemy):
   WIDTH = 70
   HEIGHT = 100
   SPEED_X = 15
-  SPEED_Y = 2
+  SPEED_Y = 1.5
   INTERVAL = SCREEN_WIDTH
   INTERVAL_SHOTING_TIME = FPS//2
   POINT = 5
-  ENDURANCE=10
+  ENDURANCE=8
   TYPE = 'malevolo_cucarachon'
   def __init__(self):
     self.image = MALEVOLO_CUCARACHON

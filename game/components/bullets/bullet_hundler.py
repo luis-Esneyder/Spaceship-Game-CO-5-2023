@@ -12,7 +12,7 @@ class BulletHundler:
       if(bullet.type == BULLET_ENEMY_TYPE):
         bullet.update(player)
       elif(bullet.type == BULLET_PLAYER_TYPE):
-        bullet.update(handler_enemy)#enemy es un objeto de EnemyHandler
+        bullet.update(handler_enemy, self.bullets)#enemy es un objeto de EnemyHandler
 
   def draw(self, screen, playing):
     if playing:

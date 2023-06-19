@@ -1,12 +1,12 @@
 import random
-from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_ENEMY_TYPE
+from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_ENEMY_TYPE, SHOOT_ENEMY
 class Enemy:
   X_POS_LIST = [i for i in range(50, SCREEN_WIDTH, 50)]
   Y_POS = 20
   LEFT= 'left'
   RIGHT= 'right'
   MOV_X = [LEFT, RIGHT]
-
+  VOLUMENT_MUSIC = 0.5
   def __init__(self, image, speed_x:int, speed_y:int, interval:int, interval_shoting_time, type, get_point=1,  endurance=1):
     self.image = image
     self.rect = self.image.get_rect()
@@ -24,7 +24,7 @@ class Enemy:
     self.get_point = get_point
     self.endurance = endurance
     self.type = type
-
+    self.music = SHOOT_ENEMY
 
   def update(self, bullet_handler):
     if(self.rect.y >= SCREEN_HEIGHT):
@@ -52,4 +52,6 @@ class Enemy:
     self.index +=self.SEEP_X
   def shoot(self, bullet_handler):
     if self.shooting_time % self.interval_shoting_time == 0:
+      self.music.play()
+      self.music.set_volume(self.VOLUMENT_MUSIC)
       bullet_handler.add_bullet(BULLET_ENEMY_TYPE, self.rect.center)

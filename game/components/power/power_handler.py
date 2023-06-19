@@ -1,6 +1,6 @@
 from game.components.power.shield import Shield
 from game.components.power.heart import Heart
-from game.utils.constants import SPACESHIP_SHIELD, SCREEN_HEIGHT, SHIELD_TYPE, HEART_TYPE
+from game.utils.constants import SPACESHIP_SHIELD, SCREEN_HEIGHT, SHIELD_TYPE, HEART_TYPE, ABSOR_HEAR
 import random
 import pygame
 class PowerHandler:
@@ -10,6 +10,7 @@ class PowerHandler:
     self.powers = []
     self.score_ref_power = 0
     self.score_ref_heard = 0
+    self.music_absor_heart = ABSOR_HEAR
   def update(self, player, score, enemies):
     self.generate_power(score)
     self.generate_heart(enemies)
@@ -28,6 +29,8 @@ class PowerHandler:
   def colliderect_power(self, power, player):
     if(power.type == SHIELD_TYPE):  
       if power.rect.colliderect(player.rect):
+        self.music_absor_heart.play()
+        pygame.time.delay(50)
         power.start_time = pygame.time.get_ticks()
         power.is_alive = False
         player.power_type = power.type
@@ -36,7 +39,7 @@ class PowerHandler:
         player.set_power_image(SPACESHIP_SHIELD)
 
   def generate_power(self, score):
-    if(len(self.powers) > 1 and  score - self.score_ref_power >10):
+    if(score - self.score_ref_power > 10):
       power = Shield()
       self.powers.append(power)
       self.WHEN_APPEARS_SHIELD += random.randint(3000, 7000)
@@ -45,13 +48,14 @@ class PowerHandler:
   def colliderect_heart(self, power, player, score):
     if(power.type == HEART_TYPE and power.is_alive):  
       if power.rect.colliderect(player.rect):
+        self.music_absor_heart.play()
+        pygame.time.delay(50)
         if player.is_alive and power.is_alive:
           if player.resistence<3:
             player.resistence +=1
           power.is_alive = False
           self.score_ref_heard = score
         
-
   def generate_heart(self, enemies):
       for enemy  in enemies:
         if enemy.type == self.TYPE and enemy.is_destroyec:
