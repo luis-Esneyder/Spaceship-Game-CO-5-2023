@@ -14,7 +14,7 @@ class ShipGod(Enemy):
   ENDURANCE=25
   AMPLITUDE = 20
   FREQUENCY = 0.1
-  TYPE = 'SHIP_GOD'
+  TYPE = 'SHIP_GOOD'
   def __init__(self):
     self.image = SHIP_GOD
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))

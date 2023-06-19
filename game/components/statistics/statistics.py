@@ -7,6 +7,7 @@ class Statistic:
     self.score = 0
     self.max_score = 0
     self.number_death = 0
+    self.number_enemy_destroyec = {} #objeto para almacenar los enemigos destruidos
 
   def update(self, number_enemy):
     self.score = number_enemy
@@ -29,10 +30,20 @@ class Statistic:
       screen.blit(max_score, max_score_rect)
 
   def draw_number_death(self, screen , playing):
+    number = sum(self.number_enemy_destroyec.values())
     if not playing and self.number_death > 0:
       number_death, number_death_rect = text_utils.get_message(TEXT_SHOW_DEATH.format(self.number_death), SIZE_NORMAL_TEXT , TEXT_COLOR,SCREEN_WIDTH//2,  self.POSITION_STATISTICS_Y * 1.1)
+      ############################################33
       screen.blit(number_death, number_death_rect)
+      text, text_rect = text_utils.get_message('Enemies destroyed:', SIZE_NORMAL_TEXT , TEXT_COLOR,SCREEN_WIDTH//2,  self.POSITION_STATISTICS_Y * 1.4)
+      screen.blit(text, text_rect)
+      number_death_ene, number_death_ene_rect = text_utils.get_message('{}'.format(self.number_enemy_destroyec), SIZE_NORMAL_TEXT , TEXT_COLOR,SCREEN_WIDTH//2,  self.POSITION_STATISTICS_Y * 1.5)
+      screen.blit(number_death_ene, number_death_ene_rect)
+      all_number_death_ene, all_number_death_ene_rect = text_utils.get_message('all: {}'.format(sum(self.number_enemy_destroyec.values())), SIZE_NORMAL_TEXT , TEXT_COLOR,SCREEN_WIDTH//2,  self.POSITION_STATISTICS_Y * 1.6)
+      screen.blit(all_number_death_ene, all_number_death_ene_rect)
+      
 
+  
   def draw_statics(self, screen, playing):
     if not playing and self.number_death > 0:
       text, text_rect = text_utils.get_message('STATISTICS', SIZE_TITLE , TEXT_COLOR, SCREEN_WIDTH//2)
@@ -40,3 +51,4 @@ class Statistic:
 
   def reset(self):
     self.score = 0
+    self.number_enemy_destroyec = {}

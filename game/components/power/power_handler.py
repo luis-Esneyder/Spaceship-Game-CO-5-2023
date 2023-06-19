@@ -1,11 +1,11 @@
 from game.components.power.shield import Shield
 from game.components.power.heart import Heart
-from game.utils.constants import SPACESHIP_SHIELD, SCREEN_HEIGHT, SHIELD_TYPE, HEART_TYPE, ABSOR_HEAR, ABSOR_SHIELD
+from game.utils.constants import SPACESHIP_SHIELD, SCREEN_HEIGHT, SHIELD_TYPE, HEART_TYPE, ABSOR_HEAR, ABSOR_SHIELD, MALEVOLO_CUCARACHON_TYPE
 import random
 import pygame
 class PowerHandler:
   WHEN_APPEARS_SHIELD = random.randint(3000, 7000)  
-  TYPE = 'malevolo_cucarachon'
+  TYPE = MALEVOLO_CUCARACHON_TYPE
   INTERVAL_SCORE_SHIELD = 10
   def __init__(self):
     self.powers = []

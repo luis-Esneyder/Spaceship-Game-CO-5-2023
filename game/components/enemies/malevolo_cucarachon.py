@@ -1,5 +1,5 @@
 from game.components.enemies.enemy import Enemy
-from game.utils.constants import MALEVOLO_CUCARACHON, SCREEN_WIDTH, FPS
+from game.utils.constants import MALEVOLO_CUCARACHON, SCREEN_WIDTH, FPS,MALEVOLO_CUCARACHON_TYPE
 import pygame
 class MalevoloCucarachon(Enemy):
 
@@ -11,7 +11,7 @@ class MalevoloCucarachon(Enemy):
   INTERVAL_SHOTING_TIME = FPS//2
   POINT = 5
   ENDURANCE=8
-  TYPE = 'malevolo_cucarachon'
+  TYPE = MALEVOLO_CUCARACHON_TYPE
   def __init__(self):
     self.image = MALEVOLO_CUCARACHON
     self.image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))

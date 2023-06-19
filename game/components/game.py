@@ -55,7 +55,7 @@ class Game:
             user_input = pygame.key.get_pressed()
             self.player.update(user_input, self.game_speed, self.bullet_handler)
             self.enemy_handler.update(self.bullet_handler, self.player, self.statistic.score)
-            self.bullet_handler.update(self.player, self.enemy_handler)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
+            self.bullet_handler.update(self.player, self.enemy_handler, self.statistic.number_enemy_destroyec)#player:SpaceShip, enemy_handler: EnemyHandler //que contiene enemies=[]
             self.power_handler.update(self.player, self.statistic.score, self.enemy_handler.enemies)
             self.statistic.update(self.enemy_handler.number_enemy_destroyec)
             self.contador+=1
