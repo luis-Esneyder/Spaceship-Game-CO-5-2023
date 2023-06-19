@@ -13,12 +13,15 @@ class BulletPlayer(Bullet):
 
   def update(self, handler_enemy, bullets):#un objeto de EnemyHandler contiene un arreglo de enemigos
     self.rect.y -= self.SPEED
+    self.kill_enemy(handler_enemy.enemies)
     for bullet in bullets:
       if self.rect.colliderect(bullet.rect):
         if(bullet.type == BULLET_ENEMY_TYPE):
           bullet.show = False
           self.show = False
-    for enemy in handler_enemy.enemies:
+    
+  def kill_enemy(self, enemies):
+    for enemy in enemies:
       if(self.rect.colliderect(enemy.rect)):
         enemy.endurance -=1
         if(enemy.endurance == 0):

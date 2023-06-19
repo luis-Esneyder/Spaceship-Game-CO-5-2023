@@ -1,3 +1,4 @@
+
 ## Spaceship-Game
 
 Spaceship es un juego creado con ayuda de la libreria pygame, utilizamos porgramación orientada a objetos, utilizando clases en python. Acontinuación mostramos la estructura del proyecto.
@@ -9,16 +10,14 @@ La Estructura del proyecto es la seguida por pygame, manejo de ebentos, actualiz
 - components, es donde esta la base del proyecto, aquí se crean las clases que nos permiten el funcionamiento y el manejo del juego.
 - utils, en esta parte vamos a ver que se utiliza de forma que ayuda a mantener buenas practicas de programación a la hora de normbar constantes que se manejan de forma global en la app
 
-
-
-
-
-
-
 ## Game
 La idea del juego es eliminar las naves enemigas que van a pareciendo, esquivar las balas y los enemigos para ir ganando puntuación, al transcurrir el tiempo, la velocidad del juego va aumentando en una unidad.
 
 Al eliminar algunos (solo el Malevolo Cucarachon) enemigos estos pueden arrojar corazones y aumentar la vida del jugador, también al aumentar el puntaje en 10 aprece un escudo que al obtenerlo el jugador se vuelve inmune a daños, tanto del enemigo como de las balas de los enemigos, esto por 3 segundos.
+
+## Player
+El jugador empiza el juego con una vida, tiene un movimiento horizontal que aumenta a 10 unidades y un movimiento en y aumentando en la misma cantidad.
+
 ## Naves Enemigas
 
 vamos a ver el comportamiento de las naves
@@ -34,3 +33,4 @@ Malevolo Cucarachon
 -
 Esta nave enemiga en màs fuerte que las naves básica, apareciendo si el puntaje del jugador en mayor que 10, al aprecer el primero este ira apareciendo cada 4 segundos 
 - El Malevolo Cucarachon tiene un rango de movimiento en el eje x de toda la pantalla con un incremento en este 15 unidades, en el eje y el incremento es de 1.5 unidades, el Malevolo Cucarachon tiene una vida de 8 y al morir le da al jugador 5 puntos además de arrojar un coranzon que incrementa la vida del jugador.
+
