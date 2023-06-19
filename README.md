@@ -34,3 +34,11 @@ Malevolo Cucarachon
 Esta nave enemiga en màs fuerte que las naves básica, apareciendo si el puntaje del jugador en mayor que 10, al aprecer el primero este ira apareciendo cada 4 segundos 
 - El Malevolo Cucarachon tiene un rango de movimiento en el eje x de toda la pantalla con un incremento en este 15 unidades, en el eje y el incremento es de 1.5 unidades, el Malevolo Cucarachon tiene una vida de 8 y al morir le da al jugador 5 puntos además de arrojar un coranzon que incrementa la vida del jugador.
 
+## Balas
+
+En el juego hay dos clases de balas, las del jugador y la de los enemigos. estas balas al chocar entre ellas se eliminan
+
+- Balas del enemigo, estas balas se mueven hacia bajo de la pantalla incrementando en 8 unidades, al chocar con el jugador quita una vida
+
+- Balas del Jugador, estas balas se mueven hacia arriva incrementando 7 unidades hacia arriba, al chocar con el enemigo le quita una vida 
+
