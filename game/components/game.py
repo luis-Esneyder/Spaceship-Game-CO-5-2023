@@ -7,7 +7,7 @@ from game.components.power.power_handler import PowerHandler
 from game.components.background.background import Background
 from game.components.statistics.statistics import Statistic
 from game.components import text_utils
-from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, SIZE_TITLE, MUSIC_START, TEXT_COLOR, SHIP_DESTROYEC
+from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, SIZE_TITLE, MUSIC_START, TEXT_COLOR, SHIP_DESTROYEC,GAME_OVER
 class Game:
     INCREMENT_VEL = 1
     INTERVAL_INCREMENT_VEL = 6 * FPS
@@ -68,7 +68,7 @@ class Game:
             if self.contador % self.INTERVAL_INCREMENT_VEL == 0:
                 self.background.game_speed += self.INCREMENT_VEL
     def draw(self):
-        self.background.draw(self.screen, self.playing)
+        self.background.draw(self.screen, self.playing, self.statistic.number_death)
         self.player.draw(self.screen, self.playing)
         self.clock.tick(FPS)
         self.enemy_handler.draw(self.screen, self.playing)
@@ -82,13 +82,17 @@ class Game:
     def draw_menu(self):
         if not self.playing:
             if self.statistic.number_death == 0:
-                text, text_rect = text_utils.get_message('WELCOME TO THE GAME', 30 ,TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT//4)
-                text_2, text_rect_2 = text_utils.get_message('Press any key to start', 30 ,TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT//2.7)
+                text, text_rect = text_utils.get_message('WELCOME TO THE GAME', 30 ,TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT//2)
+                text_2, text_rect_2 = text_utils.get_message('Press any key to start', 30 ,TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT//1.7)
                 self.screen.blit(text, text_rect)
                 self.screen.blit(text_2, text_rect_2)
             else:
-                text, text_rect = text_utils.get_message('Press any key to start', SIZE_TITLE , TEXT_COLOR )
+                image = GAME_OVER
+                image_rect = image.get_rect()
+                image_rect.center = (SCREEN_WIDTH//2, SCREEN_HEIGHT//3)
+                text, text_rect = text_utils.get_message('PRESS ANY KEY TO START', SIZE_TITLE , TEXT_COLOR, SCREEN_WIDTH//2, SCREEN_HEIGHT - 80 )
                 self.screen.blit(text, text_rect)
+                self.screen.blit(image, image_rect)
 
     def reset(self):
         self.player.reset()

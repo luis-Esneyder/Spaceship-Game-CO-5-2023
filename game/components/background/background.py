@@ -11,9 +11,9 @@ class Background:
   def update(self):
     self.y_pos_bg += self.game_speed
 
-  def draw(self, screen, playing):
+  def draw(self, screen, playing, number_death):
     self.draw_background(screen, playing)
-    self.draw_bacground_start(screen, playing)
+    self.draw_bacground_start(screen, playing, number_death)
 
   def draw_background(self, screen, playing):
     if playing:
@@ -24,10 +24,14 @@ class Background:
         screen.blit(self.image, (self.x_pos_bg, self.y_pos_bg - image_height))
         self.y_pos_bg = 0
 
-  def draw_bacground_start(self, screen, playin):
-    if not playin:
+  def draw_bacground_start(self, screen, playin, number_death):
+    if not playin and number_death == 0:
       image = BG_START
       image = pygame.transform.scale(image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+      screen.blit(image, (0,0))
+    elif not playin:
+      image = BG_START
+      image = pygame.transform.scale(image, (SCREEN_WIDTH,SCREEN_HEIGHT))
       screen.blit(image, (0,0))
 
   def reset(self):

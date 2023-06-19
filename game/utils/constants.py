@@ -19,6 +19,7 @@ SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 BG_START = pygame.image.load(os.path.join(IMG_DIR, 'Other/bg_start.jpg'))
+GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
@@ -36,6 +37,7 @@ SHIP_GRAY = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
 SHIP_BLACK = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_3.png"))
 MALEVOLO_CUCARACHON = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_4.png"))
 
+
 FONT_STYLE = 'freesansbold.ttf'
 
 BULLET_ENEMY_TYPE = 'enemy'
@@ -43,7 +45,7 @@ BULLET_PLAYER_TYPE = 'player'
 
 WHITE_COLOR = (255,255,255)
 BLACK_COLOR = (0,0,0)
-TEXT_COLOR = (0, 128, 0)
+TEXT_COLOR = (152, 152 ,152)
 SIZE_TITLE = 30
 SIZE_NORMAL_TEXT = 20
 TEXT_SHOW_SCORE = 'Your score is: {}'
