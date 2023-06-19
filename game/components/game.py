@@ -7,7 +7,7 @@ from game.components.power.power_handler import PowerHandler
 from game.components.background.background import Background
 from game.components.statistics.statistics import Statistic
 from game.components import text_utils
-from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, WHITE_COLOR, SIZE_TITLE, MUSIC_START, TEXT_COLOR
+from game.utils.constants import ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, SIZE_TITLE, MUSIC_START, TEXT_COLOR, SHIP_DESTROYEC
 class Game:
     INCREMENT_VEL = 1
     INTERVAL_INCREMENT_VEL = 6 * FPS
@@ -29,6 +29,7 @@ class Game:
         self.music = MUSIC_START
         self.music.play(-1)
         self.music.set_volume(0.2)
+        self.music_death = SHIP_DESTROYEC
     def run(self):
         # Game loop: events - update - draw
         self.running = True
@@ -59,7 +60,9 @@ class Game:
             self.statistic.update(self.enemy_handler.number_enemy_destroyec)
             self.contador+=1
             if(not self.player.is_alive):
-                pygame.time.delay(300)
+                self.music_death.play()
+                self.music_death.set_volume(1)
+                pygame.time.delay(500)
                 self.playing = False
                 self.statistic.number_death +=1
             if self.contador % self.INTERVAL_INCREMENT_VEL == 0:

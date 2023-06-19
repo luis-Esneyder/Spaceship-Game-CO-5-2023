@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR, HEART, SHOOT_PLAYER, FPS
+from game.utils.constants import SPACESHIP, SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_PLAYER_TYPE, DEFAULT_TYPE, WHITE_COLOR, HEART, SHOOT_PLAYER
 from game.components import text_utils
 class Spaceship:
   WIDTH = 40

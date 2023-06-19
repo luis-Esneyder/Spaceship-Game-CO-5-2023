@@ -1,5 +1,5 @@
 import random
-from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_ENEMY_TYPE, SHOOT_ENEMY
+from game.utils.constants import SCREEN_WIDTH, SCREEN_HEIGHT, BULLET_ENEMY_TYPE, SHOOT_ENEMY, SHIP_DESTROYEC
 class Enemy:
   X_POS_LIST = [i for i in range(50, SCREEN_WIDTH, 50)]
   Y_POS = 20
@@ -25,14 +25,17 @@ class Enemy:
     self.endurance = endurance
     self.type = type
     self.music = SHOOT_ENEMY
+    self.music_death = SHIP_DESTROYEC
 
   def update(self, bullet_handler):
+    if( not self.is_alive):
+      self.music_death.play()
+      self.music_death.set_volume(1)
     if(self.rect.y >= SCREEN_HEIGHT):
       self.is_alive = False
     self.shooting_time += 1
     self.move()
     self.shoot(bullet_handler)
-
 
   def draw(self, screen):
     screen.blit(self.image, self.rect)
